@@ -265,53 +265,53 @@ local function speedmenu()
 end
 
 local function jumpmenu()
-	local sjmn = Instance.new("TextLabel")
-	sjmn.Parent = gensg
-	sjmn.Text = "JumpPower Menu"
-	sjmn.Size = UDim2.new(0, 208, 0, 28)
-	sjmn.Position = UDim2.new(0.337, 0, 0.275, 0)
-	sjmn.Name = "JumpPower Menu"
+	local spmnn = Instance.new("TextLabel")
+	spmnn.Parent = gensg
+	spmnn.Text = "Jump Menu"
+	spmnn.Size = UDim2.new(0, 208, 0, 28)
+	spmnn.Position = UDim2.new(0.337, 0, 0.275, 0)
+	spmnn.Name = "Jump Menu"
 
-	local function sjmnn()
-		sjmn:Destroy()
+	local function smmn()
+		spmnn:Destroy()
 	end
 
 	local x = Instance.new("TextButton")
-	x.Parent = sjmnn
+	x.Parent = spmnn
 	x.Size = UDim2.new(0, 29, 0, 25)
 	x.Position = UDim2.new(0.861, 0, 0.094, 0)
 	x.Text = "X"
 	x.TextScaled = true
 	x.BackgroundColor3 = Color3.new(0.960784, 0, 0)
 	x.MouseButton1Click:Connect(function()
-		sjmnn()
+		smmn()
 	end)
 
 	local udd = Instance.new("UIDragDetector")
-	udd.Parent = sjmn
+	udd.Parent = spmnn
 
 	local menuframe = Instance.new("Frame")
-	menuframe.Parent = sjmn
+	menuframe.Parent = spmnn
 	menuframe.Position = UDim2.new(0, 0,0.964, 0)
 	menuframe.Size = UDim2.new(0, 208, 0, 172)
 	menuframe.BackgroundColor3 = Color3.new(0.286275, 0.772549, 1)
 
-	local sppdo = Instance.new("TextBox")
-	sppdo.Parent = menuframe
-	sppdo.Position = UDim2.new(0.183, 0, 0.076, 0)
-	sppdo.Size = UDim2.new(0, 132, 0, 104)
-	sppdo.TextScaled = true
-	sppdo.Text = "Insert JumpPower"
+	local spddo = Instance.new("TextBox")
+	spddo.Parent = menuframe
+	spddo.Position = UDim2.new(0.183, 0, 0.076, 0)
+	spddo.Size = UDim2.new(0, 132, 0, 104)
+	spddo.TextScaled = true
+	spddo.Text = "Insert JumpPower"
 
-	local dbbd = Instance.new("TextButton")
-	dbbd.Parent = menuframe
-	dbbd.Size = UDim2.new(0, 101, 0, 22)
-	dbbd.Position = UDim2.new(0.255, 0,0.797, 0)
-	dbbd.Text = "JumpPower"
-	dbbd.TextScaled = true
-	dbbd.MouseButton1Click:Connect(function()
+	local dbdd = Instance.new("TextButton")
+	dbdd.Parent = menuframe
+	dbdd.Size = UDim2.new(0, 101, 0, 22)
+	dbdd.Position = UDim2.new(0.255, 0,0.797, 0)
+	dbdd.Text = "JumpPower"
+	dbdd.TextScaled = true
+	dbdd.MouseButton1Click:Connect(function()
 		character.Humanoid.UseJumpPower = true
-		character.Humanoid.JumpPower = sppdo.Text
+		character.Humanoid.JumpPower = spddo.Text
 	end)
 end
 
