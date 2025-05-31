@@ -1,5 +1,77 @@
 local runservice = game:GetService("RunService")
 
+local function pb300()
+	local UserInputService = game:GetService("UserInputService")
+	local player = game.Players.LocalPlayer
+	local character = player.Character
+	local hand = character:WaitForChild("LeftHand")
+	local activated = true
+
+	local block = Instance.new("Part")
+	block.Parent = character
+	block.Size = Vector3.new(1, 1, 1)
+	block.Name = "Bloque"
+	block.Anchored = false
+	block.CanCollide = false
+	block.Position = hand.Position
+	block.Rotation = hand.Rotation
+
+	local weld = Instance.new("WeldConstraint")
+	weld.Parent = block
+	weld.Part0 = block
+	weld.Part1 = hand
+
+	local function hideshowblock()
+		if block.Transparency == 0 then
+			block.Transparency = 1
+			activated = false
+		else
+			block.Transparency = 0
+			activated = true
+		end
+	end
+
+	local function pab()
+		if activated == true then
+			local parta = Instance.new("Part")
+			parta.Parent = workspace
+			parta.Position = character.HumanoidRootPart.Position + character.HumanoidRootPart.CFrame.LookVector * 3
+			parta.Size = Vector3.new(2, 2, 2)
+			parta.Anchored = true
+			parta.CanCollide = true	
+		end
+	end
+
+	local function puab()
+		if activated == true then
+			local parta = Instance.new("Part")
+			parta.Parent = workspace
+			parta.Position = character.HumanoidRootPart.Position + character.HumanoidRootPart.CFrame.LookVector * 3
+			parta.Size = Vector3.new(2, 2, 2)
+			parta.Anchored = false
+			parta.CanCollide = true	
+		end
+	end
+
+	UserInputService.InputBegan:Connect(function(input, gameProcessed)
+		if not gameProcessed and input.KeyCode == Enum.KeyCode.E then
+			hideshowblock()
+		end
+	end)
+
+	UserInputService.InputBegan:Connect(function(input, gameProcessed)
+		if not gameProcessed and input.KeyCode == Enum.KeyCode.Z then
+			pab()
+		end
+	end)
+
+	UserInputService.InputBegan:Connect(function(input, gameProcessed)
+		if not gameProcessed and input.KeyCode == Enum.KeyCode.X then
+			puab()
+		end
+	end)
+end
+
 local function pet()
 	local player = game.Players.LocalPlayer
 	local character = player.Character or player.CharacterAdded:Wait()
@@ -405,4 +477,14 @@ bjkp.Text = "Explode no damage"
 bjkp.TextScaled = true
 bjkp.MouseButton1Click:Connect(function()
 	expnodamage()
+end)
+
+local bejkp = Instance.new("TextButton")
+bejkp.Parent = menuframe
+bejkp.Size = UDim2.new(0, 29,0, 25)
+bejkp.Position = UDim2.new(0.423, 0, 0.261, 0)
+bejkp.Text = "Put Blocks 3000 (R6)"
+bejkp.TextScaled = true
+bejkp.MouseButton1Click:Connect(function()
+	pb300()
 end)
