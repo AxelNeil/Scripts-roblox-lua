@@ -1,8 +1,8 @@
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
 local runservice = game:GetService("RunService")
 
 local function pet()
+	local player = game.Players.LocalPlayer
+	local character = player.Character or player.CharacterAdded:Wait()
 	local rootpart = character.HumanoidRootPart
 	local downup = 0
 
@@ -35,6 +35,8 @@ local function pet()
 	end)
 end
 
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
 local gensg = Instance.new("ScreenGui")
 gensg.Parent = player.PlayerGui
 gensg.Name = "AXEL SUPER MODS"
@@ -46,8 +48,8 @@ end
 
 local function bomb()
 	---script pet
-	local player = "Bacon_nopobre2"
-	local character = game.workspace:WaitForChild(player)
+	local player = game.Players.LocalPlayer
+	local character = player.Character or player.CharacterAdded:Wait()
 	local rootpart = character.HumanoidRootPart
 	local runservice = game:GetService("RunService")
 	local downup = 0
@@ -127,6 +129,8 @@ local function openblocksmenu()
 	bsb.Text = "Put Block Unanchored"
 	bsb.TextScaled = true
 	bsb.MouseButton1Click:Connect(function()
+		local player = game.Players.LocalPlayer
+		local character = player.Character or player.CharacterAdded:Wait()
 		local size = tebo.Text
 		local beep = Instance.new("Part")
 		beep.Parent = workspace
@@ -144,6 +148,8 @@ local function openblocksmenu()
 	bsbb.Text = "Put Block Anchored"
 	bsbb.TextScaled = true
 	bsbb.MouseButton1Click:Connect(function()
+		local player = game.Players.LocalPlayer
+		local character = player.Character or player.CharacterAdded:Wait()
 		local size = tebo.Text
 		local bep = Instance.new("Part")
 		bep.Parent = workspace
@@ -260,6 +266,8 @@ local function speedmenu()
 	dbd.Text = "Speed"
 	dbd.TextScaled = true
 	dbd.MouseButton1Click:Connect(function()
+		local player = game.Players.LocalPlayer
+		local character = player.Character or player.CharacterAdded:Wait()
 		character.Humanoid.WalkSpeed = spdo.Text
 	end)
 end
@@ -310,6 +318,8 @@ local function jumpmenu()
 	dbdd.Text = "JumpPower"
 	dbdd.TextScaled = true
 	dbdd.MouseButton1Click:Connect(function()
+		local player = game.Players.LocalPlayer
+		local character = player.Character or player.CharacterAdded:Wait()
 		character.Humanoid.UseJumpPower = true
 		character.Humanoid.JumpPower = spddo.Text
 	end)
