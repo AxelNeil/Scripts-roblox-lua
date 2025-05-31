@@ -121,10 +121,10 @@ end
 local function expnodamage()
 	local player = game.Players.LocalPlayer
 	local character = player.Character
-	
+
 	local ff = Instance.new("ForceField")
 	ff.Parent = character
-	
+
 	local exp = Instance.new("Explosion")
 	exp.Parent = workspace
 	exp.Position = character.HumanoidRootPart.Position
@@ -477,14 +477,4 @@ bjkp.Text = "Explode no damage"
 bjkp.TextScaled = true
 bjkp.MouseButton1Click:Connect(function()
 	expnodamage()
-end)
-
-local bejkp = Instance.new("TextButton")
-bejkp.Parent = menuframe
-bejkp.Size = UDim2.new(0, 29,0, 25)
-bejkp.Position = UDim2.new(0.423, 0, 0.261, 0)
-bejkp.Text = "Put Blocks 3000 (R6)"
-bejkp.TextScaled = true
-bejkp.MouseButton1Click:Connect(function()
-	pb300()
 end)
