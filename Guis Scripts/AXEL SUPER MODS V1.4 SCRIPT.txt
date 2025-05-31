@@ -88,11 +88,11 @@ local function openblocksmenu()
 	bw.Size = UDim2.new(0, 208, 0, 28)
 	bw.Position = UDim2.new(0.337, 0, 0.275, 0)
 	bw.Name = "Blocks"
-	
+
 	local function dmb()
 		bw:Destroy()
 	end
-	
+
 	local x = Instance.new("TextButton")
 	x.Parent = bw
 	x.Size = UDim2.new(0, 29, 0, 25)
@@ -112,7 +112,7 @@ local function openblocksmenu()
 	menuframe.Position = UDim2.new(0, 0,0.964, 0)
 	menuframe.Size = UDim2.new(0, 208, 0, 172)
 	menuframe.BackgroundColor3 = Color3.new(0.286275, 0.772549, 1)
-	
+
 	local tebo = Instance.new("TextBox")
 	tebo.Parent = menuframe
 	tebo.Position = UDim2.new(0.183, 0, 0.076, 0)
@@ -136,7 +136,7 @@ local function openblocksmenu()
 		beep.Anchored = false
 		beep.BrickColor = BrickColor.Random()
 	end)
-	
+
 	local bsbb = Instance.new("TextButton")
 	bsbb.Parent = menuframe
 	bsbb.Size = UDim2.new(0, 81, 0, 25)
@@ -153,7 +153,7 @@ local function openblocksmenu()
 		bep.Anchored = true
 		bep.BrickColor = BrickColor.Random()
 	end)
-	
+
 	local warn = Instance.new("TextLabel")
 	warn.Parent = menuframe
 	warn.Size = UDim2.new(0, 208, 0, 22)
@@ -211,6 +211,107 @@ local function opendmenu()
 		local destroypart = tebdo.Text
 		local willbedestroyed = game.workspace:FindFirstChild(destroypart)
 		willbedestroyed:Destroy()
+	end)
+end
+
+local function speedmenu()
+	local spmn = Instance.new("TextLabel")
+	spmn.Parent = gensg
+	spmn.Text = "Speed Menu"
+	spmn.Size = UDim2.new(0, 208, 0, 28)
+	spmn.Position = UDim2.new(0.337, 0, 0.275, 0)
+	spmn.Name = "Speed Menu"
+
+	local function smn()
+		spmn:Destroy()
+	end
+
+	local x = Instance.new("TextButton")
+	x.Parent = spmn
+	x.Size = UDim2.new(0, 29, 0, 25)
+	x.Position = UDim2.new(0.861, 0, 0.094, 0)
+	x.Text = "X"
+	x.TextScaled = true
+	x.BackgroundColor3 = Color3.new(0.960784, 0, 0)
+	x.MouseButton1Click:Connect(function()
+		smn()
+	end)
+
+	local udd = Instance.new("UIDragDetector")
+	udd.Parent = spmn
+
+	local menuframe = Instance.new("Frame")
+	menuframe.Parent = spmn
+	menuframe.Position = UDim2.new(0, 0,0.964, 0)
+	menuframe.Size = UDim2.new(0, 208, 0, 172)
+	menuframe.BackgroundColor3 = Color3.new(0.286275, 0.772549, 1)
+
+	local spdo = Instance.new("TextBox")
+	spdo.Parent = menuframe
+	spdo.Position = UDim2.new(0.183, 0, 0.076, 0)
+	spdo.Size = UDim2.new(0, 132, 0, 104)
+	spdo.TextScaled = true
+	spdo.Text = "Insert Speed"
+
+	local dbd = Instance.new("TextButton")
+	dbd.Parent = menuframe
+	dbd.Size = UDim2.new(0, 101, 0, 22)
+	dbd.Position = UDim2.new(0.255, 0,0.797, 0)
+	dbd.Text = "Speed"
+	dbd.TextScaled = true
+	dbd.MouseButton1Click:Connect(function()
+		character.Humanoid.WalkSpeed = spdo.Text
+	end)
+end
+
+local function jumpmenu()
+	local sjmn = Instance.new("TextLabel")
+	sjmn.Parent = gensg
+	sjmn.Text = "JumpPower Menu"
+	sjmn.Size = UDim2.new(0, 208, 0, 28)
+	sjmn.Position = UDim2.new(0.337, 0, 0.275, 0)
+	sjmn.Name = "JumpPower Menu"
+
+	local function sjmnn()
+		sjmn:Destroy()
+	end
+
+	local x = Instance.new("TextButton")
+	x.Parent = spmn
+	x.Size = UDim2.new(0, 29, 0, 25)
+	x.Position = UDim2.new(0.861, 0, 0.094, 0)
+	x.Text = "X"
+	x.TextScaled = true
+	x.BackgroundColor3 = Color3.new(0.960784, 0, 0)
+	x.MouseButton1Click:Connect(function()
+		sjmnn()
+	end)
+
+	local udd = Instance.new("UIDragDetector")
+	udd.Parent = sjmn
+
+	local menuframe = Instance.new("Frame")
+	menuframe.Parent = sjmn
+	menuframe.Position = UDim2.new(0, 0,0.964, 0)
+	menuframe.Size = UDim2.new(0, 208, 0, 172)
+	menuframe.BackgroundColor3 = Color3.new(0.286275, 0.772549, 1)
+
+	local sppdo = Instance.new("TextBox")
+	sppdo.Parent = menuframe
+	sppdo.Position = UDim2.new(0.183, 0, 0.076, 0)
+	sppdo.Size = UDim2.new(0, 132, 0, 104)
+	sppdo.TextScaled = true
+	sppdo.Text = "Insert JumpPower"
+
+	local dbbd = Instance.new("TextButton")
+	dbbd.Parent = menuframe
+	dbbd.Size = UDim2.new(0, 101, 0, 22)
+	dbbd.Position = UDim2.new(0.255, 0,0.797, 0)
+	dbbd.Text = "JumpPower"
+	dbbd.TextScaled = true
+	dbbd.MouseButton1Click:Connect(function()
+		character.Humanoid.UseJumpPower = true
+		character.Humanoid.JumpPower = sppdo.Text
 	end)
 end
 
@@ -287,4 +388,24 @@ bp.Text = "Block Pet"
 bp.TextScaled = true
 bp.MouseButton1Click:Connect(function()
 	pet()
+end)
+
+local bsp = Instance.new("TextButton")
+bsp.Parent = menuframe
+bsp.Size = UDim2.new(0, 29,0, 25)
+bsp.Position = UDim2.new(0.745, 0, 0.058, 0)
+bsp.Text = "Player Speed Control"
+bsp.TextScaled = true
+bsp.MouseButton1Click:Connect(function()
+	speedmenu()
+end)
+
+local bjp = Instance.new("TextButton")
+bjp.Parent = menuframe
+bjp.Size = UDim2.new(0, 29,0, 25)
+bjp.Position = UDim2.new(0.039, 0, 0.261, 0)
+bjp.Text = "Player Jump Control"
+bjp.TextScaled = true
+bjp.MouseButton1Click:Connect(function()
+	jumpmenu()
 end)
