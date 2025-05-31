@@ -1,5 +1,14 @@
 local runservice = game:GetService("RunService")
 
+local function ff10s()
+	local player = game.Players.LocalPlayer
+	local character = player.Character
+	local ff = Instance.new("ForceField")
+	ff.Parent = character
+	wait(10)
+	ff:Destroy()
+end
+
 local function pb300()
 	local UserInputService = game:GetService("UserInputService")
 	local player = game.Players.LocalPlayer
@@ -477,4 +486,14 @@ bjkp.Text = "Explode no damage"
 bjkp.TextScaled = true
 bjkp.MouseButton1Click:Connect(function()
 	expnodamage()
+end)
+
+local bjekp = Instance.new("TextButton")
+bjekp.Parent = menuframe
+bjekp.Size = UDim2.new(0, 29,0, 25)
+bjekp.Position = UDim2.new(0.423, 0,0.261, 0)
+bjekp.Text = "ForceField 10 sec"
+bjekp.TextScaled = true
+bjekp.MouseButton1Click:Connect(function()
+	ff10s()
 end)
