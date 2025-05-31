@@ -1,0 +1,30 @@
+---this tool changes your skin color/este tool cambia el color de piel de tu skin
+local player = game.Players.LocalPlayer
+local bp = player.Backpack
+
+local tool = Instance.new("Tool")
+tool.Parent = bp
+tool.Name = "Change Color"
+
+local he = Instance.new("Part")
+he.Parent = tool
+he.Name = "Handle"
+he.Size = Vector3.new(0.001, 0.001, 0.001)
+he.Anchored = false
+he.CanCollide = false
+he.Position = Vector3.new(0, 0, 0)
+
+tool.Equipped:Connect(function()
+	local rmbc = BrickColor.Random()
+	local p = game.Players.LocalPlayer
+	local ch = p.Character or p.CharacterAdded:Wait()
+	local h = ch:WaitForChild("Humanoid")
+	local parts = ch:GetChildren()
+	h:UnequipTools()
+
+	for _, part in ipairs(parts) do
+		if part:IsA("BasePart") then
+			part.BrickColor = rmbc
+		end
+	end
+end)

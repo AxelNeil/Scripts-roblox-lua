@@ -1,0 +1,10 @@
+local player = game.Players.LocalPlayer
+local character = player.Character
+local rotpat = character:WaitForChild("HumanoidRootPart")
+local part = Instance.new("Part")
+part.Size = Vector3.new(2, 2, 2)
+part.Parent = workspace
+part.Rotation = rotpat.Rotation
+part.Position = rotpat.Position + rotpat.CFrame.LookVector * 5
+part.Anchored = false
+part.CanCollide = true

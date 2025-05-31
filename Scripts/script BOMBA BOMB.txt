@@ -1,0 +1,45 @@
+local player = game.Players.LocalPlayer
+local bp = player.Backpack
+
+local tool = Instance.new("Tool")
+tool.Parent = bp
+tool.Name = "Bomb"
+
+local he = Instance.new("Part")
+he.Parent = tool
+he.Name = "Handle"
+he.Size = Vector3.new(0.001, 0.001, 0.001)
+he.Anchored = false
+he.CanCollide = false
+he.Position = Vector3.new(0, 0, 0)
+
+tool.Equipped:Connect(function()
+	local p = game.Players.LocalPlayer
+	local ch = p.Character or p.CharacterAdded:Wait()
+	local h = ch:WaitForChild("Humanoid")
+    wait(0.1)
+	h:UnequipTools()
+
+	local bomb = Instance.new("Part")
+	bomb.Parent = workspace
+	bomb.Position = he.Position
+	bomb.Size = Vector3.new(2, 2, 2)
+	bomb.BrickColor = BrickColor.new("Really red")
+	bomb.Anchored = false
+	bomb.CanCollide = true
+
+	print("Bomba Plantada")
+	local bcn = 3
+	print("Bomba va explotar en " .. bcn .. " segundos")
+	wait(bcn)
+	warn("EXPLOTANDO BOMBA")
+
+	local exp = Instance.new("Explosion")
+	exp.Parent = workspace
+	exp.Position = bomb.Position
+	exp.BlastRadius = 10
+	exp.BlastPressure = 500000
+
+	bomb:Destroy()
+	print("EXPLOTO LA BOMBA")
+end)

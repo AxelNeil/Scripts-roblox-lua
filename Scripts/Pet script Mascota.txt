@@ -1,0 +1,33 @@
+local player = "Bacon_nopobre2"
+local character = game.workspace:WaitForChild(player)
+local rootpart = character.HumanoidRootPart
+local runservice = game:GetService("RunService")
+local downup = 0
+
+---la mascota---
+local pet = Instance.new("Part")
+pet.Parent = workspace
+pet.Position = rootpart.Position
+pet.Size = Vector3.new(2, 2, 2)
+pet.CanCollide = true
+pet.Anchored = true
+
+---el clickdetector que alterna el modo---
+local cd = Instance.new("ClickDetector")
+cd.Parent = pet
+
+cd.MouseClick:Connect(function()
+	if downup == 0 then
+		downup = 1
+	elseif downup == 1 then
+		downup = 0
+	end
+end)
+---seguimiento al jugador---
+runservice.Stepped:Connect(function()
+	if downup == 1 then
+		pet.Position = rootpart.Position - Vector3.new(0, 3.7, 0)
+	elseif downup == 0 then
+		pet.Position = rootpart.Position + rootpart.CFrame.LookVector * -3
+	end
+end)
