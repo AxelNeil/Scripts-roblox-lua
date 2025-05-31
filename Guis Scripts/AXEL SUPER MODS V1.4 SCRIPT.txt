@@ -277,7 +277,7 @@ local function jumpmenu()
 	end
 
 	local x = Instance.new("TextButton")
-	x.Parent = spmn
+	x.Parent = sjmnn
 	x.Size = UDim2.new(0, 29, 0, 25)
 	x.Position = UDim2.new(0.861, 0, 0.094, 0)
 	x.Text = "X"
