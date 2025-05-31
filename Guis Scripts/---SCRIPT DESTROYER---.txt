@@ -1,0 +1,139 @@
+---SCRIPT DESTROYER---
+local player = game.Players.LocalPlayer
+local pgui = player:FindFirstChild("PlayerGui")
+
+local sgori = Instance.new("ScreenGui")
+sgori.Parent = pgui
+
+local gnf = Instance.new("Frame")
+gnf.Parent = sgori
+gnf.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+gnf.Position = UDim2.new(0.379, 0, 0.311, 0)
+gnf.Size = UDim2.new(0, 267, 0, 190)
+
+local uc1 = Instance.new("UICorner")
+uc1.Parent = gnf
+
+local txbx = Instance.new("TextBox")
+txbx.Parent = gnf
+txbx.TextScaled = true
+txbx.Size = UDim2.new(0, 200, 0, 82)
+txbx.Position = UDim2.new(0.123, 0, 0.116, 0)
+txbx.Text = "poner bloque destruir..."
+txbx.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+
+local tba = Instance.new("TextButton")
+tba.Parent = gnf
+tba.Position = UDim2.new(0.124, 0, 0.621, 0)
+tba.Size = UDim2.new(0, 200, 0, 50)
+tba.Text = "BORRAR/DELETE"
+tba.TextScaled = true
+tba.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+tba.MouseButton1Click:Connect(function()
+	local we = game.Workspace
+	local text = txbx.Text
+	local part = we:FindFirstChild(text)
+	if part then
+		part:Destroy()
+	end
+end)
+-- LocalScript
+
+-- Referencia al Frame que quieres arrastrar
+local draggableFrame = script.Parent
+
+-- Variables internas
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+
+local dragging = false
+local dragStart
+local startPos
+
+-- Función para actualizar la posición del frame mientras se arrastra
+local function updateInput(input)
+	if dragging then
+		local delta = input.Position - dragStart
+		draggableFrame.Position = UDim2.new(
+			startPos.X.Scale,
+			startPos.X.Offset + delta.X,
+			startPos.Y.Scale,
+			startPos.Y.Offset + delta.Y
+		)
+	end
+end
+-- LocalScript
+
+-- Referencia al Frame que quieres arrastrar
+local draggableFrame = script.Parent
+
+-- Variables internas
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+
+local dragging = false
+local dragStart
+local startPos
+
+-- Función para actualizar la posición del frame mientras se arrastra
+local function updateInput(input)
+	if dragging then
+		local delta = input.Position - dragStart
+		draggableFrame.Position = UDim2.new(
+			startPos.X.Scale,
+			startPos.X.Offset + delta.X,
+			startPos.Y.Scale,
+			startPos.Y.Offset + delta.Y
+		)
+	end
+end
+
+-- LocalScript
+
+-- Referencia al Frame que quieres arrastrar
+local draggableFrame = gnf
+
+-- Variables internas
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+
+local dragging = false
+local dragStart
+local startPos
+
+-- Función para actualizar la posición del frame mientras se arrastra
+local function updateInput(input)
+	if dragging then
+		local delta = input.Position - dragStart
+		draggableFrame.Position = UDim2.new(
+			startPos.X.Scale,
+			startPos.X.Offset + delta.X,
+			startPos.Y.Scale,
+			startPos.Y.Offset + delta.Y
+		)
+	end
+end
+
+-- Cuando se presiona el botón del mouse sobre el Frame
+draggableFrame.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		dragging = true
+		dragStart = input.Position
+		startPos = draggableFrame.Position
+
+		-- Capturar movimiento del mouse
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+			end
+		end)
+	end
+end)
+
+-- Mientras se arrastra, mover el Frame
+UserInputService.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement then
+		updateInput(input)
+	end
+end)
+ 
