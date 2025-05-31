@@ -1,0 +1,46 @@
+---- Script puerta / Door script ----
+local player = game.Players.LocalPlayer
+local character = player.Character
+local HumanoidRootPart = character.HumanoidRootPart
+local open = false
+
+local doorg = Instance.new("Model")
+doorg.Parent = workspace
+doorg.Name = "PuertaScript"
+
+local part = Instance.new("Part")
+part.Parent = doorg
+part.Position = HumanoidRootPart.Position + HumanoidRootPart.CFrame.LookVector * 3
+part.Rotation = HumanoidRootPart.Rotation
+part.Size = Vector3.new(10, 10, 1)
+part.Anchored = true
+part.CanCollide = true
+part.BrickColor = BrickColor.new("Reddish brown")
+part.Name = "Puerta"
+
+local trigger = Instance.new("Part")
+trigger.Parent = doorg
+trigger.Name = "Trigger"
+trigger.Size = Vector3.new(1, 1, 1)
+trigger.Rotation = HumanoidRootPart.Rotation
+trigger.Position = HumanoidRootPart.Position + HumanoidRootPart.CFrame.LookVector * 1
+trigger.CanCollide = false
+trigger.Anchored = true
+trigger.BrickColor = BrickColor.new("Really red")
+trigger.Material = "Neon"
+
+local cd = Instance.new("ClickDetector")
+cd.Parent = trigger
+cd.MouseClick:Connect(function()
+    if open == false then
+        open = true
+        trigger.BrickColor = BrickColor.new("Bright green")
+        part.CanCollide = false
+        part.Transparency = 1
+    elseif open == true then
+        open = false
+        trigger.BrickColor = BrickColor.new("Really red")
+        part.CanCollide = true
+        part.Transparency = 0
+    end
+end)
