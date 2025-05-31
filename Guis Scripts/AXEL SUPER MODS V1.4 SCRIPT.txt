@@ -1,0 +1,209 @@
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+local gensg = Instance.new("ScreenGui")
+gensg.Parent = player.PlayerGui
+gensg.Name = "AXEL SUPER MODS"
+gensg.ResetOnSpawn = false
+
+local function destroymenu()
+	gensg:Destroy()
+end
+
+local function openblocksmenu()
+	local bw = Instance.new("TextLabel")
+	bw.Parent = gensg
+	bw.Text = "Blocks"
+	bw.Size = UDim2.new(0, 208, 0, 28)
+	bw.Position = UDim2.new(0.337, 0, 0.275, 0)
+	bw.Name = "Blocks"
+	
+	local function dmb()
+		bw:Destroy()
+	end
+	
+	local x = Instance.new("TextButton")
+	x.Parent = bw
+	x.Size = UDim2.new(0, 29, 0, 25)
+	x.Position = UDim2.new(0.861, 0, 0.094, 0)
+	x.Text = "X"
+	x.TextScaled = true
+	x.BackgroundColor3 = Color3.new(0.960784, 0, 0)
+	x.MouseButton1Click:Connect(function()
+		dmb()
+	end)
+
+	local udd = Instance.new("UIDragDetector")
+	udd.Parent = bw
+
+	local menuframe = Instance.new("Frame")
+	menuframe.Parent = bw
+	menuframe.Position = UDim2.new(0, 0,0.964, 0)
+	menuframe.Size = UDim2.new(0, 208, 0, 172)
+	menuframe.BackgroundColor3 = Color3.new(0.286275, 0.772549, 1)
+	
+	local tebo = Instance.new("TextBox")
+	tebo.Parent = menuframe
+	tebo.Position = UDim2.new(0.183, 0, 0.076, 0)
+	tebo.Size = UDim2.new(0, 132, 0, 104)
+	tebo.TextScaled = true
+	tebo.Text = "Insert VectorSize"
+
+	local bsb = Instance.new("TextButton")
+	bsb.Parent = menuframe
+	bsb.Size = UDim2.new(0, 81, 0, 25)
+	bsb.Position = UDim2.new(0.038, 0, 0.802, 0)
+	bsb.Text = "Put Block Unanchored"
+	bsb.TextScaled = true
+	bsb.MouseButton1Click:Connect(function()
+		local size = tebo.Text
+		local beep = Instance.new("Part")
+		beep.Parent = workspace
+		beep.Position = character.HumanoidRootPart.Position + character.HumanoidRootPart.CFrame.LookVector * 3
+		beep.Size = Vector3.new(size, size, size)
+		beep.CanCollide = true
+		beep.Anchored = false
+		beep.BrickColor = BrickColor.Random()
+	end)
+	
+	local bsbb = Instance.new("TextButton")
+	bsbb.Parent = menuframe
+	bsbb.Size = UDim2.new(0, 81, 0, 25)
+	bsbb.Position = UDim2.new(0.543, 0, 0.797, 0)
+	bsbb.Text = "Put Block Anchored"
+	bsbb.TextScaled = true
+	bsbb.MouseButton1Click:Connect(function()
+		local size = tebo.Text
+		local bep = Instance.new("Part")
+		bep.Parent = workspace
+		bep.Position = character.HumanoidRootPart.Position + character.HumanoidRootPart.CFrame.LookVector * 3
+		bep.Size = Vector3.new(size, size, size)
+		bep.CanCollide = true
+		bep.Anchored = true
+		bep.BrickColor = BrickColor.Random()
+	end)
+	
+	local warn = Instance.new("TextLabel")
+	warn.Parent = menuframe
+	warn.Size = UDim2.new(0, 208, 0, 22)
+	warn.Position = UDim2.new(0, 0, 0.006, 0)
+	warn.Text = "only work if the value is numbers, no if is words or contain letters"
+	warn.TextScaled = true
+end
+
+local function opendmenu()
+	local dmn = Instance.new("TextLabel")
+	dmn.Parent = gensg
+	dmn.Text = "Part Destroyer"
+	dmn.Size = UDim2.new(0, 208, 0, 28)
+	dmn.Position = UDim2.new(0.337, 0, 0.275, 0)
+	dmn.Name = "Part Destroyer"
+
+	local function ddmn()
+		dmn:Destroy()
+	end
+
+	local x = Instance.new("TextButton")
+	x.Parent = dmn
+	x.Size = UDim2.new(0, 29, 0, 25)
+	x.Position = UDim2.new(0.861, 0, 0.094, 0)
+	x.Text = "X"
+	x.TextScaled = true
+	x.BackgroundColor3 = Color3.new(0.960784, 0, 0)
+	x.MouseButton1Click:Connect(function()
+		ddmn()
+	end)
+
+	local udd = Instance.new("UIDragDetector")
+	udd.Parent = dmn
+
+	local menuframe = Instance.new("Frame")
+	menuframe.Parent = dmn
+	menuframe.Position = UDim2.new(0, 0,0.964, 0)
+	menuframe.Size = UDim2.new(0, 208, 0, 172)
+	menuframe.BackgroundColor3 = Color3.new(0.286275, 0.772549, 1)
+
+	local tebdo = Instance.new("TextBox")
+	tebdo.Parent = menuframe
+	tebdo.Position = UDim2.new(0.183, 0, 0.076, 0)
+	tebdo.Size = UDim2.new(0, 132, 0, 104)
+	tebdo.TextScaled = true
+	tebdo.Text = "Insert Part"
+
+	local dbd = Instance.new("TextButton")
+	dbd.Parent = menuframe
+	dbd.Size = UDim2.new(0, 101, 0, 22)
+	dbd.Position = UDim2.new(0.255, 0,0.797, 0)
+	dbd.Text = "Destroy/Delete"
+	dbd.TextScaled = true
+	dbd.MouseButton1Click:Connect(function()
+		local destroypart = tebdo.Text
+		local willbedestroyed = game.workspace:FindFirstChild(destroypart)
+		willbedestroyed:Destroy()
+	end)
+end
+
+local function explodeplayer()
+	local player = game.Players.LocalPlayer
+	local character = player.Character
+	local exp = Instance.new("Explosion")
+	exp.Parent = workspace
+	exp.Position = character.HumanoidRootPart.Position
+end
+
+local wname = Instance.new("TextLabel")
+wname.Parent = gensg
+wname.Text = "AXEL SUPER MODS"
+wname.Size = UDim2.new(0, 208, 0, 28)
+wname.Position = UDim2.new(0.337, 0, 0.275, 0)
+wname.Name = "AXEL SUPER MODS"
+
+local x = Instance.new("TextButton")
+x.Parent = wname
+x.Size = UDim2.new(0, 29, 0, 25)
+x.Position = UDim2.new(0.861, 0, 0.094, 0)
+x.Text = "X"
+x.TextScaled = true
+x.BackgroundColor3 = Color3.new(0.960784, 0, 0)
+x.MouseButton1Click:Connect(function()
+	destroymenu()
+end)
+
+local udd = Instance.new("UIDragDetector")
+udd.Parent = wname
+
+local menuframe = Instance.new("Frame")
+menuframe.Parent = wname
+menuframe.Position = UDim2.new(0, 0,0.964, 0)
+menuframe.Size = UDim2.new(0, 208, 0, 172)
+menuframe.BackgroundColor3 = Color3.new(0.501961, 1, 0.776471)
+
+local bsb = Instance.new("TextButton")
+bsb.Parent = menuframe
+bsb.Size = UDim2.new(0, 29,0, 25)
+bsb.Position = UDim2.new(0.058, 0,0.058, 0)
+bsb.Text = "Block"
+bsb.TextScaled = true
+bsb.MouseButton1Click:Connect(function()
+	openblocksmenu()
+end)
+
+local bdp = Instance.new("TextButton")
+bdp.Parent = menuframe
+bdp.Size = UDim2.new(0, 29,0, 25)
+bdp.Position = UDim2.new(0.231, 0,0.058, 0)
+bdp.Text = "Delete Parts Menu"
+bdp.TextScaled = true
+bdp.MouseButton1Click:Connect(function()
+	opendmenu()
+end)
+
+local bex = Instance.new("TextButton")
+bex.Parent = menuframe
+bex.Size = UDim2.new(0, 29,0, 25)
+bex.Position = UDim2.new(0.423, 0, 0.058, 0)
+bex.Text = "Explode Yourself"
+bex.TextScaled = true
+bex.MouseButton1Click:Connect(function()
+	explodeplayer()
+end)
