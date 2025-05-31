@@ -46,41 +46,18 @@ local function destroymenu()
 	gensg:Destroy()
 end
 
-local function bomb()
-	---script pet
+local function expnodamage()
 	local player = game.Players.LocalPlayer
-	local character = player.Character or player.CharacterAdded:Wait()
-	local rootpart = character.HumanoidRootPart
-	local runservice = game:GetService("RunService")
-	local downup = 0
-
-	---la mascota---
-	local pet = Instance.new("Part")
-	pet.Parent = workspace
-	pet.Position = rootpart.Position
-	pet.Size = Vector3.new(2, 2, 2)
-	pet.CanCollide = true
-	pet.Anchored = true
-
-	---el clickdetector que alterna el modo---
-	local cd = Instance.new("ClickDetector")
-	cd.Parent = pet
-
-	cd.MouseClick:Connect(function()
-		if downup == 0 then
-			downup = 1
-		elseif downup == 1 then
-			downup = 0
-		end
-	end)
-	---seguimiento al jugador---
-	runservice.Stepped:Connect(function()
-		if downup == 1 then
-			pet.Position = rootpart.Position - Vector3.new(0, 3.7, 0)
-		elseif downup == 0 then
-			pet.Position = rootpart.Position + rootpart.CFrame.LookVector * -3
-		end
-	end)
+	local character = player.Character
+	
+	local ff = Instance.new("ForceField")
+	ff.Parent = character
+	
+	local exp = Instance.new("Explosion")
+	exp.Parent = workspace
+	exp.Position = character.HumanoidRootPart.Position
+	wait(0.5)
+	ff:Destroy()
 end
 
 local function openblocksmenu()
@@ -384,7 +361,7 @@ local bex = Instance.new("TextButton")
 bex.Parent = menuframe
 bex.Size = UDim2.new(0, 29,0, 25)
 bex.Position = UDim2.new(0.423, 0, 0.058, 0)
-bex.Text = "Explode Yourself"
+bex.Text = "Explode"
 bex.TextScaled = true
 bex.MouseButton1Click:Connect(function()
 	explodeplayer()
@@ -418,4 +395,14 @@ bjp.Text = "Player Jump Control"
 bjp.TextScaled = true
 bjp.MouseButton1Click:Connect(function()
 	jumpmenu()
+end)
+
+local bjkp = Instance.new("TextButton")
+bjkp.Parent = menuframe
+bjkp.Size = UDim2.new(0, 29,0, 25)
+bjkp.Position = UDim2.new(0.255, 0, 0.261, 0)
+bjkp.Text = "Explode no damage"
+bjkp.TextScaled = true
+bjkp.MouseButton1Click:Connect(function()
+	expnodamage()
 end)
