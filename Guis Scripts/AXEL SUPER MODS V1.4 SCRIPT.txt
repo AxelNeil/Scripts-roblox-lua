@@ -252,6 +252,12 @@ local function openblocksmenu()
 		beep.CanCollide = true
 		beep.Anchored = false
 		beep.BrickColor = BrickColor.Random()
+		
+		local cd = Instance.new("ClickDetector")
+		cd.Parent = beep
+		cd.MouseClick:Connect(function()
+			beep:Destroy()
+		end)
 	end)
 
 	local bsbb = Instance.new("TextButton")
@@ -271,6 +277,12 @@ local function openblocksmenu()
 		bep.CanCollide = true
 		bep.Anchored = true
 		bep.BrickColor = BrickColor.Random()
+		
+		local cd = Instance.new("ClickDetector")
+		cd.Parent = bep
+		cd.MouseClick:Connect(function()
+			bep:Destroy()
+		end)
 	end)
 
 	local warn = Instance.new("TextLabel")
