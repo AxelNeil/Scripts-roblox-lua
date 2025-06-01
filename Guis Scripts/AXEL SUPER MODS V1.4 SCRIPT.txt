@@ -9,6 +9,13 @@ local function ff10s()
 	ff:Destroy()
 end
 
+local function sit()
+	local player = game.Players.LocalPlayer
+	local character = player.Character
+	local hum = character:WaitForChild("Humanoid")
+	hum.Sit = true
+end
+
 local function loaddoorscript()
 	local player = game.Players.LocalPlayer
 	local character = player.Character
@@ -554,4 +561,14 @@ bjjekp.Text = "Put Door"
 bjjekp.TextScaled = true
 bjjekp.MouseButton1Click:Connect(function()
 	loaddoorscript()
+end)
+
+local bjjeekp = Instance.new("TextButton")
+bjjeekp.Parent = menuframe
+bjjeekp.Size = UDim2.new(0, 29,0, 25)
+bjjeekp.Position = UDim2.new(0.774, 0, 0.273, 0)
+bjjeekp.Text = "Sit"
+bjjeekp.TextScaled = true
+bjjeekp.MouseButton1Click:Connect(function()
+	sit()
 end)
