@@ -1,0 +1,33 @@
+local function CrazyTools()
+	local p = game.Players.LocalPlayer
+	local c = p.Character
+
+	local DeleteTool = Instance.new("Tool")
+	DeleteTool.Name = "Delete Tool"
+	DeleteTool.Parent = p.Backpack
+
+	local part = Instance.new("Part")
+	part.Name = "Handle"
+	part.Parent = DeleteTool
+	part.Size = Vector3.new(1, 1, 1)
+	part.CanCollide = false
+	part.Anchored = false
+	part.Transparency = 1
+
+	local delt = Instance.new("Part")
+	delt.Parent = DeleteTool
+	delt.Size = Vector3.new(1, 1, 1)
+	delt.CanCollide = false
+	delt.Anchored = false
+	delt.Position = part.Position + part.CFrame.LookVector * 0.5
+
+	local wd = Instance.new("WeldConstraint")
+	wd.Parent = part
+	wd.Part0 = part
+	wd.Part1 = delt
+
+	delt.Touched:Connect(function(hit)
+		hit:Destroy()
+	end)
+end
+CrazyTools()
