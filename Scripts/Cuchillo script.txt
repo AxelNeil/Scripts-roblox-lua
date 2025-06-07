@@ -1,0 +1,84 @@
+local p = "Bacon_nopobre2"
+local player = game.Players:FindFirstChild("Bacon_nopobre2")
+local character = player.Character
+local UserInputService = game:GetService("UserInputService")
+local ra = character:WaitForChild("Right Arm")
+local gpdamage = false
+local usecooldown = true
+local cooldown = false
+
+local gpart = Instance.new("Part")
+gpart.Parent = character
+gpart.Size = Vector3.new(0.3, 0.5, 3)
+gpart.Position = ra.Position - Vector3.new(0, 1, 0) + ra.CFrame.LookVector * 1
+gpart.Rotation = ra.Rotation
+gpart.Anchored = false
+gpart.CanCollide = false
+
+local gpart2 = Instance.new("Part")
+gpart2.Parent = character
+gpart2.Size = Vector3.new(0.7, 0.7, 1.4)
+gpart2.Position = ra.Position - Vector3.new(0, 1, 0) + ra.CFrame.LookVector * 0
+gpart2.Rotation = ra.Rotation
+gpart2.Anchored = false
+gpart2.CanCollide = false
+gpart2.BrickColor = BrickColor.new("Really black")
+
+local weld = Instance.new("WeldConstraint")
+weld.Parent = gpart
+weld.Part0 = gpart
+weld.Part1 = ra
+
+local weld2 = Instance.new("WeldConstraint")
+weld2.Parent = gpart2
+weld2.Part0 = gpart2
+weld2.Part1 = gpart
+
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+	if gameProcessed then return end
+
+	if input.KeyCode == Enum.KeyCode.E then
+		if usecooldown == true then
+			if cooldown == false then
+				cooldown = true
+				local function playAnimation()
+					local humanoid = character:WaitForChild("Humanoid")
+
+					local animation = Instance.new("Animation")
+					animation.AnimationId = "rbxassetid://84349462106065"
+
+					local animationTrack = humanoid:LoadAnimation(animation)
+					animationTrack:Play()
+				end
+
+				playAnimation()
+				wait(0.7)
+				gpdamage = true
+				wait(0.3)
+				gpdamage = false
+				cooldown = false
+			end
+		end
+	end
+end)
+
+gpart.Touched:Connect(function(hit)
+	if gpdamage == true then
+		local character = hit.Parent
+		local humanoid = character:FindFirstChild("Humanoid")
+		if humanoid then
+			humanoid.Health = humanoid.Health - 10
+		end
+		local r1 = math.random(1, 50)
+		local r2 = math.random(1, 50)
+		local r3 = math.random(1, 50)
+		local blood = Instance.new("Part")
+		blood.Parent = workspace
+		blood.Position = hit.Position
+		blood.Size = Vector3.new(1, 1, 1)
+		blood.CanCollide = false
+		blood.Anchored = false
+		blood.Velocity = Vector3.new(r1, r2, r3)
+		blood.BrickColor = BrickColor.new("Really red")
+	end	
+end)
