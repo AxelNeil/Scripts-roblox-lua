@@ -1,0 +1,44 @@
+local player = game.Players.LocalPlayer
+local uis = game:GetService("UserInputService")
+local ragdolled = false
+local ragdolltime = 3
+
+uis.InputBegan:Connect(function(input, gameProcessed)
+	if gameProcessed or input.UserInputType ~= Enum.UserInputType.Keyboard then return end
+	if input.KeyCode == Enum.KeyCode.R and not ragdolled then
+		ragdolled = true
+		local ch = player.Character
+		if not ch then return end
+
+		local hum = ch:FindFirstChildOfClass("Humanoid")
+		local hs = hum.WalkSpeed
+		hum.WalkSpeed = 0
+		local hrp = ch:FindFirstChild("HumanoidRootPart")
+		if hum and hrp then
+			local pe = Instance.new("ParticleEmitter")
+			pe.Parent = hrp
+			pe.Rate = 100
+			pe.Drag = 5
+			
+			hum.PlatformStand = true
+			hrp.AssemblyLinearVelocity = Vector3.new(math.random(-50, 50), math.random(-50, 50), math.random(-50, 50))
+			hrp.AssemblyAngularVelocity = Vector3.new(math.random(-10, 10), math.random(-10, 10), math.random(-10, 10))
+
+			task.delay(ragdolltime, function()
+				-- Verificar que el personaje y humanoide aún existen
+				local currentChar = player.Character
+				if currentChar then
+					local currentHum = currentChar:FindFirstChildOfClass("Humanoid")
+					if currentHum then
+						currentHum.PlatformStand = false
+						pe:Destroy()
+						hum.WalkSpeed = hs
+					end
+				end
+				ragdolled = false
+			end)
+		else
+			ragdolled = false
+		end
+	end
+end)
