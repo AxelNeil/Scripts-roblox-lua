@@ -1,0 +1,65 @@
+---Run Tool By Axel---
+local player = game.Players.LocalPlayer
+local rs = game:GetService("RunService")
+local character = player.Character
+local humanoid = character:WaitForChild("Humanoid")
+local animator = character.Animate
+local walkan = animator.walk
+local runan = animator.run
+local using = false
+local running = false
+local runanim = "rbxassetid://79190008392201"
+local startanim = "rbxassetid://125816822832902"
+humanoid.UseJumpPower = true
+
+local tool = Instance.new("Tool")
+tool.Parent = player.Backpack
+tool.RequiresHandle = false
+tool.Name = "Run"
+tool.Equipped:Connect(function()
+	humanoid:UnequipTools()
+	local origwalkspeed = humanoid.WalkSpeed
+	local origjumppower = humanoid.JumpPower
+	humanoid.WalkSpeed = 0
+	humanoid.JumpPower = 0
+	task.wait(0.55)
+	if using == false then
+		using = true
+		walkan.Parent = nil
+		runan.Parent = nil
+		for _, anim in ipairs(humanoid:GetPlayingAnimationTracks()) do
+			anim:Stop()
+		end
+		
+		local start = Instance.new("Animation")
+		start.AnimationId = startanim
+		local startt = humanoid:LoadAnimation(start)
+		startt:Play()
+		startt.Ended:Connect(function()
+			for _, anim2 in ipairs(humanoid:GetPlayingAnimationTracks()) do
+				anim2:Stop()
+			end
+			
+			local run = Instance.new("Animation")
+			run.AnimationId = runanim
+			local runt = humanoid:LoadAnimation(run)
+			runt:Play()
+			running = true
+			runt.Ended:Connect(function()
+				humanoid.WalkSpeed = origwalkspeed
+				humanoid.JumpPower = origjumppower
+				using = false
+				running = false
+				walkan.Parent = animator
+				runan.Parent = animator
+			end)
+		end)
+	end
+end)
+
+rs.Stepped:Connect(function()
+	if running == true then
+		local hrp = character:WaitForChild("HumanoidRootPart")
+		hrp.AssemblyLinearVelocity = hrp.CFrame.LookVector * 100
+	end
+end)
